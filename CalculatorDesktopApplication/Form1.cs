@@ -3,6 +3,10 @@ using System.Linq.Expressions;
 
 namespace CalculatorDesktopApplication
 {
+  
+
+
+
     public partial class Form1 : Form
     {
         public string CurrentNumber;
@@ -10,6 +14,9 @@ namespace CalculatorDesktopApplication
         {
             InitializeComponent();
         }
+
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -415,6 +422,7 @@ namespace CalculatorDesktopApplication
             }
         }
 
+
         private void button13_Click(object sender, EventArgs e)
         {
 
@@ -593,5 +601,73 @@ namespace CalculatorDesktopApplication
         {
 
         }
+    }
+
+    //test
+    public class Calculator
+    {
+        public string CurrentNumber = "";
+
+        public void HandleButtonClick(string buttonLabel)
+        {
+            if (string.IsNullOrEmpty(CurrentNumber))
+            {
+                CurrentNumber += buttonLabel;
+            }
+            else if (CurrentNumber.Contains("="))
+            {
+                CurrentNumber = buttonLabel;
+            }
+            else
+            {
+                CurrentNumber += buttonLabel;
+            }
+        }
+
+        public static string DecimalToBinary(int decimalNumber)
+        {
+
+            string binary = "";
+            while (decimalNumber > 0)
+            {
+                int remainder = decimalNumber % 2;
+                binary = remainder + binary;
+                decimalNumber /= 2;
+            }
+
+            return binary;
+        }
+
+        public static string DecimalToHexadecimal(int decimalNumber)
+        {
+            if (decimalNumber == 0)
+            {
+                return "0";
+            }
+
+            string hexadecimal = "";
+            while (decimalNumber > 0)
+            {
+                int remainder = decimalNumber % 16;
+                hexadecimal = ToHexChar(remainder) + hexadecimal;
+                decimalNumber /= 16;
+            }
+
+            return hexadecimal;
+        }
+
+        private static char ToHexChar(int value)
+        {
+            if (value >= 0 && value <= 9)
+            {
+                return (char)('0' + value);
+            }
+            else
+            {
+                return (char)('A' + value - 10);
+            }
+        }
+
+
     }
 }
